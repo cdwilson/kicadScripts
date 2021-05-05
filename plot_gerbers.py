@@ -1,3 +1,5 @@
+#!/Applications/Kicad/kicad.app/Contents/Frameworks/Python.framework/Versions/Current/bin/python
+
 '''
     A python script example to create various plot files from a board:
     Fab files
@@ -20,18 +22,26 @@
 
 import sys
 import os
-import pcbnew
 import time
 
 import logging
 import zipfile
 import shutil
 
-
-from pcbnew import *
 from datetime import datetime
 from shutil import copy
 
+
+sys.path.insert(
+    0,
+    "/Applications/Kicad/kicad.app/Contents/Frameworks/python/site-packages/")
+
+try:
+    import pcbnew
+    from pcbnew import *
+except:
+    print("PCBNew not found, are you using KiCAD included Python ?")
+    exit()
 
 filename=sys.argv[1]
 project_name = os.path.splitext(os.path.split(filename)[1])[0]

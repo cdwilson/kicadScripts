@@ -1,3 +1,5 @@
+#!/Applications/Kicad/kicad.app/Contents/Frameworks/Python.framework/Versions/Current/bin/python
+
 '''
 	A python script to create Nice looking board previews.
 
@@ -18,6 +20,11 @@ import xml.etree.ElementTree as ET
 
 from datetime import datetime
 from shutil import copy
+
+
+sys.path.insert(
+    0,
+    "/Applications/Kicad/kicad.app/Contents/Frameworks/python/site-packages/")
 
 try:
     import pcbnew
@@ -417,12 +424,7 @@ def render(pcb, plot_plan, output_filename, mirror=False):
 
 	# Hack your path to add a bunch of plausible locations for inkscape
 	pathlist = [
-		'C:\\Program Files\\Inkscape',
-		'C:\\Program Files\\Inkscape\\bin',
-		'C:\\Program Files (x86)\\Inkscape',
-		'C:\\Program Files (x86)\\Inkscape\\bin',
-		'/usr/local/bin',
-		'/usr/bin/'
+		'/Applications/Inkscape.app/Contents/MacOS/'
 	]
 	os.environ["PATH"] += os.pathsep + os.pathsep.join(pathlist)
 	try:	
